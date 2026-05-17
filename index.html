@@ -1,0 +1,2704 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="La Academia – Dancing Zone. Academia de danza en Montevideo, Uruguay. Ballet Clásico, Contemporánea, Hip Hop & Urban, Jazz Dance." />
+  <title>La Academia – Dancing Zone | Montevideo</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    /* ====================================================
+       RESET & BASE
+    ==================================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:       #C9A84C;
+      --gold-light: #E2C97A;
+      --gold-dark:  #8F6D1E;
+      --black:      #080808;
+      --black-2:    #111111;
+      --black-3:    #1A1A1A;
+      --black-4:    #242424;
+      --gray:       #555555;
+      --gray-light: #999999;
+      --white:      #F5F5F5;
+      --white-dim:  rgba(245,245,245,0.75);
+
+      --font-title: 'Bebas Neue', sans-serif;
+      --font-body:  'Montserrat', sans-serif;
+      --font-serif: 'Cormorant Garamond', serif;
+
+      --nav-h: 72px;
+      --section-pad: 110px 0;
+      --radius: 4px;
+      --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; scroll-padding-top: 80px; }
+
+    /* Scrollbar delgado y oscuro */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: var(--black-4); border-radius: 2px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--gold-dark); }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; }
+
+    .container {
+      width: 90%;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: var(--font-title);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: 0.03em;
+      color: var(--white);
+      margin-bottom: 1.2rem;
+    }
+
+    .section-subtitle {
+      font-family: var(--font-serif);
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--white-dim);
+      max-width: 600px;
+      line-height: 1.7;
+    }
+
+    .gold-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 1.5rem 0;
+    }
+
+    /* Scroll reveal base */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ====================================================
+       BUTTONS
+    ==================================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6em;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.95em 2.2em;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--black);
+    }
+    .btn-gold:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(201,168,76,0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.35);
+    }
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    /* ====================================================
+       NAVBAR
+    ==================================================== */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      transition: background 0.4s ease, box-shadow 0.4s ease, backdrop-filter 0.4s ease;
+    }
+
+    #navbar.scrolled {
+      background: rgba(8, 8, 8, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(201,168,76,0.15);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    /* LOGO PLACEHOLDER — reemplazá logo.png por tu archivo */
+    .nav-logo img {
+      height: 44px;
+      width: auto;
+      object-fit: contain;
+    }
+    .nav-logo .logo-fallback {
+      font-family: var(--font-title);
+      font-size: 1.6rem;
+      letter-spacing: 0.12em;
+      color: var(--white);
+    }
+    .nav-logo .logo-fallback span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.4rem;
+    }
+
+    .nav-links a {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white-dim);
+      position: relative;
+      transition: color var(--transition);
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width var(--transition);
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta { margin-left: 0.8rem; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--white);
+      transition: var(--transition);
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile nav overlay */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(8, 8, 8, 0.98);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .mobile-nav.open {
+      display: flex;
+      opacity: 1;
+      pointer-events: all;
+    }
+    .mobile-nav a {
+      font-family: var(--font-title);
+      font-size: 2.8rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      transition: color var(--transition);
+    }
+    .mobile-nav a:hover { color: var(--gold); }
+
+    /* ====================================================
+       HERO
+    ==================================================== */
+    #hero {
+      position: relative;
+      height: 100svh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* VIDEO BG — reemplazá "hero-video.mp4" por tu archivo de video */
+    /* Para usar imagen estática en lugar de video, eliminá el #hero-video y descomentá #hero-img */
+    #hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 0;
+      opacity: 0.55;
+      /* PLACEHOLDER — reemplazá src por el path de tu video */
+    }
+
+    /* Imagen de fondo de respaldo (placeholder visual mientras no hay video) */
+    .hero-bg-placeholder {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse at 30% 60%, rgba(201,168,76,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(201,168,76,0.04) 0%, transparent 50%),
+        linear-gradient(135deg, #0c0c0c 0%, #181818 50%, #080808 100%);
+    }
+    .hero-bg-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 38px 38px;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(
+        to bottom,
+        rgba(8,8,8,0.3) 0%,
+        rgba(8,8,8,0.1) 40%,
+        rgba(8,8,8,0.6) 80%,
+        rgba(8,8,8,1) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 1.5rem;
+      max-width: 900px;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroFadeUp 0.8s 0.3s forwards;
+    }
+
+    .hero-title {
+      font-family: var(--font-title);
+      font-size: clamp(4rem, 12vw, 9rem);
+      line-height: 0.95;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: heroFadeUp 0.9s 0.5s forwards;
+    }
+
+    .hero-title em {
+      font-style: normal;
+      color: var(--gold);
+      -webkit-text-stroke: 0px;
+    }
+
+    .hero-sub {
+      font-family: var(--font-serif);
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--white-dim);
+      margin-bottom: 3rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroFadeUp 0.8s 0.7s forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: heroFadeUp 0.8s 0.9s forwards;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      opacity: 0;
+      animation: heroFadeUp 1s 1.3s forwards;
+      color: var(--gold);
+      font-size: 2rem;
+      line-height: 1;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .hero-scroll i {
+      display: block;
+      animation: scrollBounce 1.6s ease-in-out infinite;
+      filter: drop-shadow(0 0 6px rgba(201,168,76,0.45));
+    }
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateY(0);    opacity: 1;   }
+      50%       { transform: translateY(10px); opacity: 0.5; }
+    }
+
+    @keyframes heroFadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ====================================================
+       SOBRE LA ACADEMIA
+    ==================================================== */
+    #sobre {
+      padding: var(--section-pad);
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #sobre::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201,168,76,0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .sobre-image-wrap {
+      position: relative;
+    }
+
+    /* IMAGEN PLACEHOLDER — reemplazá con <img src="sobre.jpg" alt="..."> */
+    .sobre-img-placeholder {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: var(--black-3);
+      border: 1px solid rgba(201,168,76,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+      color: var(--gray);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      position: relative;
+      overflow: hidden;
+    }
+    .sobre-img-placeholder::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 20px,
+        rgba(255,255,255,0.01) 20px,
+        rgba(255,255,255,0.01) 21px
+      );
+    }
+    .sobre-img-placeholder i { font-size: 2.5rem; color: var(--gold-dark); opacity: 0.5; }
+
+    .sobre-img-frame {
+      position: absolute;
+      bottom: -20px; right: -20px;
+      width: 80%;
+      height: 80%;
+      border: 1px solid rgba(201,168,76,0.25);
+      pointer-events: none;
+    }
+
+    .sobre-stat-chip {
+      position: absolute;
+      top: 2rem; left: -2rem;
+      background: var(--gold);
+      color: var(--black);
+      padding: 1rem 1.4rem;
+      font-family: var(--font-title);
+      text-align: center;
+      line-height: 1.1;
+    }
+    .sobre-stat-chip strong {
+      display: block;
+      font-size: 2rem;
+      letter-spacing: 0.05em;
+    }
+    .sobre-stat-chip span {
+      font-family: var(--font-body);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .sobre-text blockquote {
+      font-family: var(--font-serif);
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--gold-light);
+      border-left: 2px solid var(--gold);
+      padding-left: 1.5rem;
+      margin: 2rem 0;
+      line-height: 1.6;
+    }
+
+    .sobre-text p {
+      color: var(--white-dim);
+      font-size: 0.95rem;
+      line-height: 1.85;
+      margin-bottom: 1.2rem;
+    }
+
+    .sobre-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 2rem;
+    }
+    .chip {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.45em 1em;
+      border: 1px solid rgba(201,168,76,0.35);
+      color: var(--gold);
+      border-radius: 2px;
+    }
+
+    /* ====================================================
+       DISCIPLINAS
+    ==================================================== */
+    #disciplinas {
+      padding: var(--section-pad);
+      background: var(--black-2);
+    }
+
+    .disciplinas-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .disciplinas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5px;
+    }
+
+    .disc-card {
+      position: relative;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      cursor: pointer;
+      background: var(--black-3);
+    }
+
+    /* IMAGEN DE FONDO por disciplina — reemplazá el background-image de cada card */
+    .disc-card-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .disc-card:hover .disc-card-bg { transform: scale(1.07); }
+
+    .disc-card-bg-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .disc-card-bg-placeholder i {
+      font-size: 4rem;
+      color: rgba(201,168,76,0.15);
+      transition: var(--transition);
+    }
+    .disc-card:hover .disc-card-bg-placeholder i { color: rgba(201,168,76,0.25); }
+
+    .disc-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(8,8,8,0.95) 0%, rgba(8,8,8,0.3) 60%, transparent 100%);
+      transition: background var(--transition);
+    }
+    .disc-card:hover .disc-card-overlay {
+      background: linear-gradient(to top, rgba(8,8,8,0.98) 0%, rgba(8,8,8,0.55) 70%, rgba(8,8,8,0.15) 100%);
+    }
+
+    .disc-card-content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 2rem;
+      transform: translateY(0);
+      transition: var(--transition);
+    }
+
+    .disc-card-number {
+      font-family: var(--font-title);
+      font-size: 0.85rem;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .disc-card-title {
+      font-family: var(--font-title);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      letter-spacing: 0.05em;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 0.8rem;
+    }
+
+    .disc-card-desc {
+      font-size: 0.82rem;
+      color: var(--white-dim);
+      line-height: 1.7;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, opacity 0.4s ease;
+      opacity: 0;
+    }
+    .disc-card:hover .disc-card-desc {
+      max-height: 100px;
+      opacity: 1;
+    }
+
+    .disc-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 1rem;
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: opacity 0.3s 0.1s ease, transform 0.3s 0.1s ease;
+    }
+    .disc-card:hover .disc-card-link {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* ====================================================
+       HORARIOS
+    ==================================================== */
+    #horarios {
+      padding: var(--section-pad);
+      background: var(--black);
+    }
+
+    .horarios-layout {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .horarios-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.55em 1.2em;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: none;
+      color: var(--gray-light);
+      cursor: pointer;
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+    .tab-btn.active, .tab-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(201,168,76,0.07);
+    }
+
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .schedule-table th {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding: 0.85rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+    }
+    .schedule-table td {
+      padding: 1rem;
+      font-size: 0.85rem;
+      color: var(--white-dim);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      vertical-align: middle;
+    }
+    .schedule-table tr:last-child td { border-bottom: none; }
+    .schedule-table tr { transition: background var(--transition); }
+    .schedule-table tr:hover td { background: rgba(201,168,76,0.04); color: var(--white); }
+    .schedule-table .clase-nombre {
+      font-weight: 600;
+      color: var(--white);
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2em 0.7em;
+      border-radius: 20px;
+    }
+    .badge-nivel-beg { background: rgba(201,168,76,0.15); color: var(--gold); }
+    .badge-nivel-int { background: rgba(255,255,255,0.1); color: var(--white-dim); }
+    .badge-nivel-adv { background: rgba(201,168,76,0.3); color: var(--gold-light); }
+
+    .horarios-info-box {
+      background: var(--black-3);
+      border: 1px solid rgba(201,168,76,0.15);
+      padding: 2rem;
+      margin-top: 1.5rem;
+    }
+    .horarios-info-box h4 {
+      font-family: var(--font-title);
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .horarios-info-box p {
+      font-size: 0.82rem;
+      color: var(--white-dim);
+      line-height: 1.8;
+    }
+    .horarios-info-box .info-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .horarios-info-box .info-item i { color: var(--gold); width: 16px; }
+
+    /* ====================================================
+       PROFESORES
+    ==================================================== */
+    #profesores {
+      padding: var(--section-pad);
+      background: var(--black-2);
+    }
+
+    .profesores-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .profesores-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2px;
+    }
+
+    .prof-card {
+      position: relative;
+      overflow: hidden;
+      background: var(--black-3);
+      cursor: default;
+    }
+
+    /* FOTO PLACEHOLDER — reemplazá con <img src="prof1.jpg" alt="Nombre Profesor" /> */
+    .prof-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .prof-card:hover .prof-photo { transform: scale(1.04); }
+
+    .prof-photo-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--black-4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .prof-card:hover .prof-photo-placeholder { transform: scale(1.04); }
+    .prof-photo-placeholder i { font-size: 3.5rem; color: rgba(201,168,76,0.2); }
+
+    .prof-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(8,8,8,0.98) 0%, transparent 100%);
+      padding: 2.5rem 1.8rem 1.8rem;
+      transform: translateY(30%);
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .prof-card:hover .prof-overlay { transform: translateY(0); }
+
+    .prof-name {
+      font-family: var(--font-title);
+      font-size: 1.6rem;
+      letter-spacing: 0.05em;
+      color: var(--white);
+      margin-bottom: 0.2rem;
+    }
+    .prof-role {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .prof-bio {
+      font-size: 0.82rem;
+      color: var(--white-dim);
+      line-height: 1.75;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.4s 0.1s ease, transform 0.4s 0.1s ease;
+    }
+    .prof-card:hover .prof-bio { opacity: 1; transform: translateY(0); }
+
+    .prof-social {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+      opacity: 0;
+      transition: opacity 0.4s 0.2s ease;
+    }
+    .prof-card:hover .prof-social { opacity: 1; }
+    .prof-social a {
+      width: 32px; height: 32px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      color: var(--white-dim);
+      transition: var(--transition);
+    }
+    .prof-social a:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* ====================================================
+       GALERÍA
+    ==================================================== */
+    #galeria {
+      padding: var(--section-pad);
+      background: var(--black);
+    }
+
+    .galeria-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .galeria-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3px;
+    }
+
+    .gal-item {
+      overflow: hidden;
+      position: relative;
+      background: var(--black-3);
+      cursor: pointer;
+      height: 290px;
+    }
+    /* Row 1: [2col] [1col] [1col]  */
+    .gal-item:nth-child(1) { grid-column: span 2; }
+    /* Row 2: [1col] [2col] [1col]  */
+    .gal-item:nth-child(5) { grid-column: span 2; }
+    /* Row 3: [2col] [2col]          */
+    .gal-item:nth-child(7) { grid-column: span 2; }
+    .gal-item:nth-child(8) { grid-column: span 2; }
+
+    /* IMÁGENES GALERÍA — reemplazá cada placeholder con <img src="foto.jpg" /> */
+    .gal-placeholder {
+      width: 100%; height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--black-3);
+      transition: transform 0.6s ease;
+    }
+    .gal-item:hover .gal-placeholder { transform: scale(1.05); }
+
+    .gal-placeholder i {
+      font-size: 2rem;
+      color: rgba(201,168,76,0.15);
+    }
+
+    .gal-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .gal-item:hover img { transform: scale(1.05); }
+
+    .gal-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(8,8,8,0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.4s ease;
+    }
+    .gal-overlay i {
+      color: white;
+      font-size: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .gal-item:hover .gal-overlay { background: rgba(8,8,8,0.45); }
+    .gal-item:hover .gal-overlay i { opacity: 1; }
+
+    .galeria-cta {
+      text-align: center;
+      margin-top: 2.5rem;
+    }
+
+    /* ====================================================
+       TESTIMONIOS
+    ==================================================== */
+    #testimonios {
+      padding: var(--section-pad);
+      background: var(--black-2);
+      overflow: hidden;
+    }
+
+    .testimonios-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .slider-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slider-track {
+      display: flex;
+      gap: 1.5rem;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .testimonial-card {
+      flex: 0 0 calc(33.333% - 1rem);
+      background: var(--black-3);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 2.5rem;
+      position: relative;
+      transition: border-color var(--transition);
+    }
+    .testimonial-card:hover { border-color: rgba(201,168,76,0.25); }
+
+    .testimonial-card::before {
+      content: '\201C';
+      font-family: var(--font-serif);
+      font-size: 6rem;
+      line-height: 0;
+      color: var(--gold);
+      opacity: 0.2;
+      position: absolute;
+      top: 2rem; left: 1.5rem;
+    }
+
+    .stars {
+      color: var(--gold);
+      font-size: 0.75rem;
+      margin-bottom: 1.2rem;
+      display: flex;
+      gap: 3px;
+    }
+
+    .testimonial-text {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--white-dim);
+      line-height: 1.8;
+      margin-bottom: 1.8rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .author-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--black-4);
+      border: 1px solid rgba(201,168,76,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-title);
+      font-size: 1rem;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .author-name {
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--white);
+      margin-bottom: 0.15rem;
+    }
+    .author-meta {
+      font-size: 0.72rem;
+      color: var(--gray-light);
+      letter-spacing: 0.05em;
+    }
+
+    .slider-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .slider-btn {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: none;
+      color: var(--white);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      font-size: 0.85rem;
+    }
+    .slider-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+    .slider-dots {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--gray);
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .dot.active {
+      background: var(--gold);
+      transform: scale(1.4);
+    }
+
+    /* ====================================================
+       NÚMEROS / STATS
+    ==================================================== */
+    #stats {
+      padding: 80px 0;
+      background: var(--gold);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .stat-item .stat-number {
+      font-family: var(--font-title);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      color: var(--black);
+      letter-spacing: 0.03em;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .stat-item .stat-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(8,8,8,0.65);
+    }
+
+    /* ====================================================
+       CONTACTO
+    ==================================================== */
+    #contacto {
+      padding: var(--section-pad);
+      background: var(--black);
+    }
+
+    .contacto-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .map-wrap {
+      width: 100%;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      border: 1px solid rgba(201,168,76,0.15);
+      margin-bottom: 1.5rem;
+    }
+    /* EMBED DE GOOGLE MAPS — reemplazá el iframe de abajo con el embed real de tu ubicación */
+    .map-wrap iframe {
+      width: 100%; height: 100%;
+      border: none;
+      filter: grayscale(80%) invert(90%) contrast(85%);
+      opacity: 0.9;
+    }
+
+    .contacto-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .contacto-detail-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      font-size: 0.88rem;
+      color: var(--white-dim);
+    }
+    .contacto-detail-item i {
+      color: var(--gold);
+      width: 18px;
+      margin-top: 0.2rem;
+      flex-shrink: 0;
+    }
+
+    .social-row {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .social-link {
+      width: 42px; height: 42px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: var(--white-dim);
+      transition: var(--transition);
+    }
+    .social-link:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(201,168,76,0.08);
+      transform: translateY(-3px);
+    }
+
+    /* Formulario */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .form-group label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray-light);
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      background: var(--black-3);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--white);
+      padding: 0.85rem 1.1rem;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      border-radius: var(--radius);
+      transition: border-color var(--transition);
+      outline: none;
+      resize: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--gold);
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--gray);
+    }
+    .form-group textarea { height: 130px; }
+    .form-group select option { background: var(--black-3); }
+
+    .form-msg {
+      display: none;
+      padding: 0.9rem 1.2rem;
+      border-radius: var(--radius);
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+    .form-msg.success {
+      display: block;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold-light);
+    }
+    .form-msg.error {
+      display: block;
+      background: rgba(255,80,80,0.1);
+      border: 1px solid rgba(255,80,80,0.3);
+      color: #ff8080;
+    }
+
+    /* ====================================================
+       FOOTER
+    ==================================================== */
+    #footer {
+      background: var(--black-2);
+      border-top: 1px solid rgba(201,168,76,0.1);
+      padding: 4rem 0 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand .logo-fallback {
+      font-family: var(--font-title);
+      font-size: 1.8rem;
+      letter-spacing: 0.12em;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .footer-brand .logo-fallback span { color: var(--gold); }
+    .footer-brand p {
+      font-size: 0.83rem;
+      color: var(--gray-light);
+      line-height: 1.75;
+      max-width: 280px;
+    }
+
+    .footer-col h5 {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+    .footer-col ul li {
+      margin-bottom: 0.65rem;
+    }
+    .footer-col ul li a {
+      font-size: 0.83rem;
+      color: var(--gray-light);
+      transition: color var(--transition);
+    }
+    .footer-col ul li a:hover { color: var(--white); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-bottom p {
+      font-size: 0.75rem;
+      color: var(--gray);
+    }
+    .footer-bottom .footer-social {
+      display: flex;
+      gap: 0.8rem;
+    }
+    .footer-bottom .footer-social a {
+      font-size: 0.85rem;
+      color: var(--gray);
+      transition: color var(--transition);
+    }
+    .footer-bottom .footer-social a:hover { color: var(--gold); }
+
+    /* ====================================================
+       LIGHTBOX
+    ==================================================== */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(0,0,0,0.95);
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      transition: color var(--transition);
+    }
+    .lightbox-close:hover { color: var(--gold); }
+    .lightbox-img {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+    }
+
+
+    /* ====================================================
+       RESPONSIVE
+    ==================================================== */
+    @media (max-width: 1024px) {
+      .sobre-grid { gap: 3rem; }
+      .horarios-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+      .testimonial-card { flex: 0 0 calc(50% - 0.75rem); }
+    }
+
+    @media (max-width: 768px) {
+      :root { --section-pad: 80px 0; }
+
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+
+      .sobre-grid { grid-template-columns: 1fr; }
+      .sobre-stat-chip { left: 0; top: 1rem; }
+
+      .galeria-grid { grid-template-columns: repeat(2, 1fr); }
+      .gal-item { grid-column: span 1 !important; height: 200px; }
+
+      .contacto-grid { grid-template-columns: 1fr; gap: 3rem; }
+
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-brand p { max-width: 100%; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .testimonial-card { flex: 0 0 calc(100% - 0); }
+
+      .form-row { grid-template-columns: 1fr; }
+
+      .disc-card-desc { max-height: 100px !important; opacity: 1 !important; }
+      .disc-card-link { opacity: 1 !important; transform: translateX(0) !important; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title { font-size: clamp(3rem, 16vw, 5rem); }
+      .disc-card { aspect-ratio: 4/3; }
+    }
+
+    /* ====================================================
+       CUSTOM SELECT
+    ==================================================== */
+    .custom-select-wrap { position: relative; user-select: none; }
+
+    .custom-select-trigger {
+      background: var(--black-3);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--white);
+      padding: 0.85rem 1.1rem;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: border-color var(--transition);
+    }
+    .custom-select-trigger:hover,
+    .custom-select-trigger.open { border-color: var(--gold); }
+    .custom-select-trigger i {
+      color: var(--gold-dark);
+      font-size: 0.72rem;
+      transition: transform var(--transition);
+      flex-shrink: 0;
+    }
+    .custom-select-trigger.open i { transform: rotate(180deg); }
+
+    .custom-select-options {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0; right: 0;
+      background: rgba(16,16,16,0.97);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: var(--radius);
+      box-shadow: 0 24px 48px rgba(0,0,0,0.75), inset 0 1px 0 rgba(255,255,255,0.04);
+      z-index: 300;
+      overflow: hidden;
+      animation: selectOpen 0.2s ease;
+    }
+    .custom-select-options.open { display: block; }
+
+    @keyframes selectOpen {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .custom-option {
+      padding: 0.85rem 1.2rem;
+      font-size: 0.88rem;
+      color: var(--white-dim);
+      cursor: pointer;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      transition: background var(--transition), color var(--transition), padding-left var(--transition);
+    }
+    .custom-option:last-child { border-bottom: none; }
+    .custom-option:hover {
+      background: rgba(201,168,76,0.08);
+      color: var(--white);
+      padding-left: 1.6rem;
+    }
+    .custom-option.selected { color: var(--gold); }
+    .custom-option.placeholder { color: var(--gray); font-style: italic; }
+
+    /* ====================================================
+       RESPONSIVE FIXES
+    ==================================================== */
+    @media (max-width: 768px) {
+      /* Mobile nav — sin contenido cortado */
+      .mobile-nav {
+        justify-content: flex-start;
+        padding: calc(var(--nav-h) + 1.5rem) 2rem 3rem;
+        overflow-y: auto;
+        gap: 1.6rem;
+      }
+      .mobile-nav a { font-size: 2rem; }
+
+      /* Testimonios — 1 card full-width */
+      .testimonial-card { flex: 0 0 88%; }
+      .slider-track { gap: 1rem; }
+
+      /* Centrar texto en secciones */
+      .horarios-layout > div:first-child { text-align: center; }
+      .horarios-layout > div:first-child .gold-line { margin-left: auto; margin-right: auto; }
+      .horarios-layout > div:first-child .section-subtitle { margin: 0 auto; }
+      .horarios-layout > div:first-child .horarios-info-box { text-align: left; }
+
+      /* Stats grid 2 cols en mobile chico */
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+
+      /* Prof cards scroll horizontal en mobile */
+      .profesores-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+  ============================================================ -->
+  <nav id="navbar">
+    <div class="container nav-inner">
+      <!-- LOGO: reemplazá logo.png por tu archivo real, o eliminá la etiqueta img y dejá solo .logo-fallback -->
+      <a href="#hero" class="nav-logo">
+        <img id="logo" src="logo3.png" alt="La Academia Logo" />
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#sobre">Nosotros</a></li>
+        <li><a href="#disciplinas">Disciplinas</a></li>
+        <li><a href="#horarios">Horarios</a></li>
+        <li><a href="#profesores">Equipo</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+
+      <a href="#contacto" class="btn btn-gold nav-cta" style="font-size:0.7rem;padding:0.75em 1.6em;">
+        Inscribite
+      </a>
+
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav Overlay -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#sobre"       onclick="closeMobileNav()">Nosotros</a>
+    <a href="#disciplinas" onclick="closeMobileNav()">Disciplinas</a>
+    <a href="#horarios"    onclick="closeMobileNav()">Horarios</a>
+    <a href="#profesores"  onclick="closeMobileNav()">Equipo</a>
+    <a href="#galeria"     onclick="closeMobileNav()">Galería</a>
+    <a href="#contacto"    onclick="closeMobileNav()">Contacto</a>
+    <a href="#contacto"    onclick="closeMobileNav()" class="btn btn-gold" style="margin-top:1rem;">Inscribite</a>
+  </div>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section id="hero">
+    <!--
+      VIDEO DE FONDO:
+      Descomentá esta etiqueta y reemplazá "hero-video.mp4" con el path de tu video.
+      Recomendado: video horizontal, 1080p o 4K, sin audio, formato MP4+WebM.
+    -->
+    <!--
+    <video id="hero-video" autoplay muted loop playsinline poster="hero-poster.jpg">
+      <source src="hero-video.mp4" type="video/mp4" />
+      <source src="hero-video.webm" type="video/webm" />
+    </video>
+    -->
+
+    <!-- Placeholder visual mientras no haya video -->
+    <div class="hero-bg-placeholder"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <span class="hero-eyebrow">Montevideo, Uruguay · Desde 2015</span>
+      <h1 class="hero-title">
+        DONDE EL ARTE<br>
+        <em>TOMA VIDA</em>
+      </h1>
+      <p class="hero-sub">
+        La mayor diversidad en expresiones artísticas,<br>
+        en un espacio de excelencia único en Uruguay.
+      </p>
+      <div class="hero-actions">
+        <a href="#disciplinas" class="btn btn-gold">
+          <i class="fa-solid fa-star"></i> Conocé las disciplinas
+        </a>
+        <a href="#contacto" class="btn btn-outline">
+          Inscribite ahora
+        </a>
+      </div>
+    </div>
+
+    <a href="#sobre" class="hero-scroll" aria-label="Ver más">
+      <i class="fa-solid fa-chevron-down"></i>
+    </a>
+  </section>
+
+  <!-- ============================================================
+       SOBRE LA ACADEMIA
+  ============================================================ -->
+  <section id="sobre">
+    <div class="container">
+      <div class="sobre-grid">
+
+        <!-- Imagen -->
+        <div class="sobre-image-wrap reveal">
+          <!--
+            IMAGEN: reemplazá el bloque .sobre-img-placeholder con:
+            <img src="sobre.jpg" alt="La Academia Dancing Zone" style="width:100%;aspect-ratio:4/5;object-fit:cover;" />
+          -->
+          <img
+            src="https://images.pexels.com/photos/1701194/pexels-photo-1701194.jpeg?auto=compress&cs=tinysrgb&w=900&h=1100&dpr=2"
+            alt="La Academia – estudio de danza"
+            style="width:100%;aspect-ratio:4/5;object-fit:cover;object-position:top;display:block;"
+            loading="lazy"
+          />
+          <div class="sobre-img-frame"></div>
+          <div class="sobre-stat-chip">
+            <strong>+10</strong>
+            <span>Años<br>de arte</span>
+          </div>
+        </div>
+
+        <!-- Texto -->
+        <div class="sobre-text">
+          <span class="section-label reveal">Nuestra historia</span>
+          <h2 class="section-title reveal reveal-delay-1">UN ESPACIO<br>SIN IGUAL</h2>
+          <div class="gold-line reveal reveal-delay-2"></div>
+
+          <blockquote class="reveal reveal-delay-2">
+            "Un espacio único que provee la mayor diversidad<br>en expresiones artísticas."
+          </blockquote>
+
+          <p class="reveal reveal-delay-3">
+            La Academia – Dancing Zone nació con una sola convicción: que la danza transforma vidas. Desde Libertad 2657, en el corazón de Montevideo, somos el hogar de bailarines de todas las edades y niveles que buscan llevar su movimiento al siguiente nivel.
+          </p>
+          <p class="reveal reveal-delay-3">
+            Con un equipo de docentes de primer nivel y una comunidad apasionada de más de 15 mil seguidores en Instagram, La Academia es el referente de la danza en Uruguay. No enseñamos pasos. Formamos bailarines.
+          </p>
+
+          <div class="sobre-chips reveal reveal-delay-4">
+            <span class="chip">Ballet Clásico</span>
+            <span class="chip">Contemporáneo</span>
+            <span class="chip">Hip Hop</span>
+            <span class="chip">Jazz</span>
+            <span class="chip">Urban</span>
+            <span class="chip">Latin</span>
+          </div>
+
+          <div style="margin-top:2.5rem;" class="reveal reveal-delay-5">
+            <a href="#disciplinas" class="btn btn-gold">Ver todas las disciplinas</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       DISCIPLINAS
+  ============================================================ -->
+  <section id="disciplinas">
+    <div class="container">
+      <div class="disciplinas-header">
+        <span class="section-label reveal">Lo que hacemos</span>
+        <h2 class="section-title reveal reveal-delay-1">NUESTRAS<br>DISCIPLINAS</h2>
+        <div class="gold-line reveal reveal-delay-2" style="margin:1.2rem auto;"></div>
+        <p class="section-subtitle reveal reveal-delay-3" style="margin:0 auto;text-align:center;">
+          Cada disciplina es un mundo. Encontrá el tuyo.
+        </p>
+      </div>
+    </div>
+
+    <div class="disciplinas-grid">
+
+      <!-- CARD 1: Ballet Clásico -->
+      <div class="disc-card reveal">
+        <div class="disc-card-bg" style="background-image:url('https://images.pexels.com/photos/1701194/pexels-photo-1701194.jpeg?auto=compress&cs=tinysrgb&w=900&q=85')"></div>
+        <div class="disc-card-overlay"></div>
+        <div class="disc-card-content">
+          <div class="disc-card-number">01</div>
+          <h3 class="disc-card-title">BALLET<br>CLÁSICO</h3>
+          <p class="disc-card-desc">
+            La base de toda formación dancística. Técnica académica rigurosa, postura, disciplina y gracia. Clases para todos los niveles desde los 4 años en adelante.
+          </p>
+          <a href="#contacto" class="disc-card-link">
+            Conocer más <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- CARD 2: Danza Contemporánea -->
+      <div class="disc-card reveal reveal-delay-1">
+        <div class="disc-card-bg" style="background-image:url('https://images.unsplash.com/photo-1518834107812-67b0b7c58434?auto=format&fit=crop&w=900&q=85')"></div>
+        <div class="disc-card-overlay"></div>
+        <div class="disc-card-content">
+          <div class="disc-card-number">02</div>
+          <h3 class="disc-card-title">DANZA<br>CONTEMPORÁNEA</h3>
+          <p class="disc-card-desc">
+            Exploración del movimiento, la expresión y el espacio. Técnicas release, contact improvisation y composición coreográfica para quienes buscan libertad creativa.
+          </p>
+          <a href="#contacto" class="disc-card-link">
+            Conocer más <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- CARD 3: Hip Hop & Urban -->
+      <div class="disc-card reveal reveal-delay-2">
+        <div class="disc-card-bg" style="background-image:url('https://images.unsplash.com/photo-1535525153412-5a42439a210d?auto=format&fit=crop&w=900&q=85')"></div>
+        <div class="disc-card-overlay"></div>
+        <div class="disc-card-content">
+          <div class="disc-card-number">03</div>
+          <h3 class="disc-card-title">HIP HOP<br>& URBAN</h3>
+          <p class="disc-card-desc">
+            Breaking, locking, popping, krump y freestyle. Clases con la energía y autenticidad de la cultura urbana, dictadas por referentes del movimiento en Uruguay.
+          </p>
+          <a href="#contacto" class="disc-card-link">
+            Conocer más <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- CARD 4: Jazz Dance -->
+      <div class="disc-card reveal reveal-delay-3">
+        <div class="disc-card-bg" style="background-image:url('https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=900&q=85')"></div>
+        <div class="disc-card-overlay"></div>
+        <div class="disc-card-content">
+          <div class="disc-card-number">04</div>
+          <h3 class="disc-card-title">JAZZ<br>DANCE</h3>
+          <p class="disc-card-desc">
+            Ritmo, musicalidad y estilo. El jazz dance fusiona técnica clásica con la vitalidad del jazz moderno, Broadway y musical. Intenso, dinámico y apasionante.
+          </p>
+          <a href="#contacto" class="disc-card-link">
+            Conocer más <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       HORARIOS
+  ============================================================ -->
+  <section id="horarios">
+    <div class="container">
+      <div class="horarios-layout">
+
+        <!-- Lado izquierdo: info -->
+        <div>
+          <span class="section-label reveal">Planificá tu semana</span>
+          <h2 class="section-title reveal reveal-delay-1">CLASES &<br>HORARIOS</h2>
+          <div class="gold-line reveal reveal-delay-2"></div>
+          <p class="section-subtitle reveal reveal-delay-3">
+            Encontrá el horario que mejor se adapta a tu rutina. Nuevas clases cada semestre.
+          </p>
+
+          <div class="horarios-info-box reveal reveal-delay-4" style="margin-top:2rem;">
+            <h4>Información general</h4>
+            <div class="info-item"><i class="fa-solid fa-location-dot"></i> <span>Libertad 2657, entre Cavia y Trabajo, Montevideo</span></div>
+            <div class="info-item"><i class="fa-solid fa-phone"></i> <span>+598 XX XXX XXXX (reemplazar)</span></div>
+            <div class="info-item"><i class="fa-brands fa-instagram"></i> <a href="https://instagram.com/laacademiauy" target="_blank" rel="noopener" style="color:var(--gold);">@laacademiauy</a></div>
+            <div class="info-item"><i class="fa-solid fa-clock"></i> <span>Lun–Vie: 10:00–22:00 · Sáb: 9:00–17:00</span></div>
+          </div>
+
+          <div style="margin-top:1.5rem;" class="reveal reveal-delay-5">
+            <a href="#contacto" class="btn btn-gold">Inscribite hoy</a>
+          </div>
+        </div>
+
+        <!-- Lado derecho: tabla -->
+        <div class="reveal reveal-delay-2">
+          <div class="horarios-tabs">
+            <button class="tab-btn active" onclick="setTab(this, 'lunes')">Lunes</button>
+            <button class="tab-btn" onclick="setTab(this, 'martes')">Martes</button>
+            <button class="tab-btn" onclick="setTab(this, 'miercoles')">Miércoles</button>
+            <button class="tab-btn" onclick="setTab(this, 'jueves')">Jueves</button>
+            <button class="tab-btn" onclick="setTab(this, 'viernes')">Viernes</button>
+          </div>
+
+          <!-- HORARIOS: reemplazá estos datos ficticios por los reales de la academia -->
+          <div id="tab-lunes">
+            <table class="schedule-table">
+              <thead>
+                <tr>
+                  <th>Horario</th>
+                  <th>Clase</th>
+                  <th>Docente</th>
+                  <th>Nivel</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>10:00 – 11:30</td>
+                  <td class="clase-nombre">Ballet Clásico</td>
+                  <td>Valeria Méndez</td>
+                  <td><span class="badge badge-nivel-beg">Inicial</span></td>
+                </tr>
+                <tr>
+                  <td>14:00 – 15:30</td>
+                  <td class="clase-nombre">Jazz Dance</td>
+                  <td>Santiago Ruiz</td>
+                  <td><span class="badge badge-nivel-int">Intermedio</span></td>
+                </tr>
+                <tr>
+                  <td>16:00 – 17:30</td>
+                  <td class="clase-nombre">Hip Hop & Urban</td>
+                  <td>Lucas Torres</td>
+                  <td><span class="badge badge-nivel-beg">Inicial</span></td>
+                </tr>
+                <tr>
+                  <td>18:00 – 19:30</td>
+                  <td class="clase-nombre">Jazz Dance</td>
+                  <td>Camila Ríos</td>
+                  <td><span class="badge badge-nivel-int">Intermedio</span></td>
+                </tr>
+                <tr>
+                  <td>19:30 – 21:00</td>
+                  <td class="clase-nombre">Danza Contemporánea</td>
+                  <td>Valeria Méndez</td>
+                  <td><span class="badge badge-nivel-adv">Avanzado</span></td>
+                </tr>
+                <tr>
+                  <td>20:00 – 21:30</td>
+                  <td class="clase-nombre">Danza Contemporánea</td>
+                  <td>Martina García</td>
+                  <td><span class="badge badge-nivel-beg">Inicial</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="tab-martes" style="display:none;">
+            <table class="schedule-table">
+              <thead>
+                <tr><th>Horario</th><th>Clase</th><th>Docente</th><th>Nivel</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>10:00 – 11:30</td>
+                  <td class="clase-nombre">Jazz Dance</td>
+                  <td>Santiago Ruiz</td>
+                  <td><span class="badge badge-nivel-int">Intermedio</span></td>
+                </tr>
+                <tr>
+                  <td>15:00 – 16:30</td>
+                  <td class="clase-nombre">Danza Contemporánea</td>
+                  <td>Martina García</td>
+                  <td><span class="badge badge-nivel-beg">Inicial</span></td>
+                </tr>
+                <tr>
+                  <td>17:00 – 18:30</td>
+                  <td class="clase-nombre">Ballet Clásico</td>
+                  <td>Valeria Méndez</td>
+                  <td><span class="badge badge-nivel-adv">Avanzado</span></td>
+                </tr>
+                <tr>
+                  <td>19:00 – 20:30</td>
+                  <td class="clase-nombre">Hip Hop & Urban</td>
+                  <td>Camila Ríos</td>
+                  <td><span class="badge badge-nivel-beg">Inicial</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="tab-miercoles" style="display:none;">
+            <table class="schedule-table">
+              <thead>
+                <tr><th>Horario</th><th>Clase</th><th>Docente</th><th>Nivel</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>10:00 – 11:30</td>
+                  <td class="clase-nombre">Contemporary</td>
+                  <td>Valeria Méndez</td>
+                  <td><span class="badge badge-nivel-int">Intermedio</span></td>
+                </tr>
+                <tr>
+                  <td>16:00 – 17:30</td>
+                  <td class="clase-nombre">Hip Hop / Urban</td>
+                  <td>Lucas Torres</td>
+                  <td><span class="badge badge-nivel-adv">Avanzado</span></td>
+                </tr>
+                <tr>
+                  <td>18:00 – 19:30</td>
+                  <td class="clase-nombre">Jazz Dance</td>
+                  <td>Martina García</td>
+                  <td><span class="badge badge-nivel-int">Intermedio</span></td>
+                </tr>
+                <tr>
+                  <td>20:00 – 21:30</td>
+                  <td class="clase-nombre">Jazz Dance</td>
+                  <td>Santiago Ruiz</td>
+                  <td><span class="badge badge-nivel-adv">Avanzado</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="tab-jueves" style="display:none;">
+            <table class="schedule-table">
+              <thead>
+                <tr><th>Horario</th><th>Clase</th><th>Docente</th><th>Nivel</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>10:00 – 11:30</td>
+                  <td class="clase-nombre">Ballet Clásico</td>
+                  <td>Valeria Méndez</td>
+                  <td><span class="badge badge-nivel-beg">Inicial</span></td>
+                </tr>
+                <tr>
+                  <td>15:00 – 16:30</td>
+                  <td class="clase-nombre">Jazz Dance</td>
+                  <td>Santiago Ruiz</td>
+                  <td><span class="badge badge-nivel-beg">Inicial</span></td>
+                </tr>
+                <tr>
+                  <td>17:30 – 19:00</td>
+                  <td class="clase-nombre">Latin Dance</td>
+                  <td>Camila Ríos</td>
+                  <td><span class="badge badge-nivel-adv">Avanzado</span></td>
+                </tr>
+                <tr>
+                  <td>19:00 – 20:30</td>
+                  <td class="clase-nombre">Danza Contemporánea</td>
+                  <td>Martina García</td>
+                  <td><span class="badge badge-nivel-int">Intermedio</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="tab-viernes" style="display:none;">
+            <table class="schedule-table">
+              <thead>
+                <tr><th>Horario</th><th>Clase</th><th>Docente</th><th>Nivel</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>10:00 – 11:30</td>
+                  <td class="clase-nombre">Contemporary</td>
+                  <td>Valeria Méndez</td>
+                  <td><span class="badge badge-nivel-beg">Inicial</span></td>
+                </tr>
+                <tr>
+                  <td>14:00 – 15:30</td>
+                  <td class="clase-nombre">Hip Hop / Urban</td>
+                  <td>Lucas Torres</td>
+                  <td><span class="badge badge-nivel-int">Intermedio</span></td>
+                </tr>
+                <tr>
+                  <td>16:00 – 17:30</td>
+                  <td class="clase-nombre">Danza Contemporánea</td>
+                  <td>Martina García</td>
+                  <td><span class="badge badge-nivel-beg">Inicial</span></td>
+                </tr>
+                <tr>
+                  <td>18:00 – 19:30</td>
+                  <td class="clase-nombre">Jazz Dance</td>
+                  <td>Santiago Ruiz</td>
+                  <td><span class="badge badge-nivel-adv">Avanzado</span></td>
+                </tr>
+                <tr>
+                  <td>20:00 – 21:30</td>
+                  <td class="clase-nombre">Latin Dance</td>
+                  <td>Camila Ríos</td>
+                  <td><span class="badge badge-nivel-int">Intermedio</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p style="font-size:0.72rem;color:var(--gray);margin-top:1rem;font-style:italic;">
+            * Horarios de ejemplo. Reemplazá con los horarios reales de la academia.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PROFESORES
+  ============================================================ -->
+  <section id="profesores">
+    <div class="container">
+      <div class="profesores-header">
+        <span class="section-label reveal">El alma de La Academia</span>
+        <h2 class="section-title reveal reveal-delay-1">NUESTRO<br>EQUIPO</h2>
+        <div class="gold-line reveal reveal-delay-2" style="margin:1.2rem auto;"></div>
+        <p class="section-subtitle reveal reveal-delay-3" style="margin:0 auto;text-align:center;">
+          Artistas y educadores de primer nivel. Apasionados por lo que hacen.
+        </p>
+      </div>
+    </div>
+
+    <div class="profesores-grid">
+
+      <!--
+        FOTO PROFESOR: reemplazá el .prof-photo-placeholder con:
+        <img class="prof-photo" src="profesores/prof1.jpg" alt="Valeria Méndez" />
+      -->
+
+      <!-- Profesor 1 -->
+      <div class="prof-card reveal">
+        <img class="prof-photo" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=85" alt="Valeria Méndez" loading="lazy" />
+        <div class="prof-overlay">
+          <div class="prof-name">VALERIA MÉNDEZ</div>
+          <div class="prof-role">Danza Clásica & Contemporánea</div>
+          <p class="prof-bio">
+            Formada en el Estudio de Danza Contemporánea de Montevideo y con experiencia internacional en Buenos Aires y Madrid. Más de 15 años sobre el escenario y en la docencia.
+          </p>
+        </div>
+      </div>
+
+      <!-- Profesor 2 -->
+      <div class="prof-card reveal reveal-delay-1">
+        <img class="prof-photo" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=85" alt="Santiago Ruiz" loading="lazy" />
+        <div class="prof-overlay">
+          <div class="prof-name">SANTIAGO RUIZ</div>
+          <div class="prof-role">Jazz Dance & Danza Moderna</div>
+          <p class="prof-bio">
+            Bailarín y coreógrafo egresado del ISEF. Especializado en jazz americano y danza moderna con formación en Buenos Aires y São Paulo. Más de 12 años de experiencia docente.
+          </p>
+        </div>
+      </div>
+
+      <!-- Profesor 3 -->
+      <div class="prof-card reveal reveal-delay-2">
+        <img class="prof-photo" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=85" alt="Camila Ríos" loading="lazy" />
+        <div class="prof-overlay">
+          <div class="prof-name">CAMILA RÍOS</div>
+          <div class="prof-role">Latin Dance & Folklore</div>
+          <p class="prof-bio">
+            Bailarina y coreógrafa especializada en danza latinoamericana y folklore. Formada en el Centro de Danza del Uruguay, ha representado al país en festivales internacionales de América y Europa.
+          </p>
+        </div>
+      </div>
+
+      <!-- Profesor 4 -->
+      <div class="prof-card reveal reveal-delay-3">
+        <img class="prof-photo" src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=85" alt="Lucas Torres" loading="lazy" />
+        <div class="prof-overlay">
+          <div class="prof-name">LUCAS TORRES</div>
+          <div class="prof-role">Urban, Hip Hop & Freestyle</div>
+          <p class="prof-bio">
+            Pionero del movimiento urban dance en Uruguay. Representó al país en competencias internacionales en Brasil, Chile y Colombia. Su estilo combina técnica rigurosa con energía callejera.
+          </p>
+        </div>
+      </div>
+
+      <!-- Profesor 5 -->
+      <div class="prof-card reveal reveal-delay-4">
+        <img class="prof-photo" src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=600&q=85" alt="Martina García" loading="lazy" />
+        <div class="prof-overlay">
+          <div class="prof-name">MARTINA GARCÍA</div>
+          <div class="prof-role">Danza Contemporánea</div>
+          <p class="prof-bio">
+            Bailarina y coreógrafa formada en el Estudio de Danza Contemporánea de Montevideo, con posgrado en movimiento somático en Barcelona. Su trabajo explora la relación entre cuerpo, espacio y emoción.
+          </p>
+        </div>
+      </div>
+
+      <!--
+        AGREGAR PROFESOR: duplicá un bloque .prof-card y editá nombre, rol, bio y redes.
+      -->
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ESTADÍSTICAS
+  ============================================================ -->
+  <section id="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <div class="stat-number" data-target="10" data-prefix="+">0</div>
+          <div class="stat-label">Años de trayectoria</div>
+        </div>
+        <div class="stat-item reveal reveal-delay-1">
+          <div class="stat-number" data-target="500" data-prefix="+">0</div>
+          <div class="stat-label">Alumnos activos</div>
+        </div>
+        <div class="stat-item reveal reveal-delay-2">
+          <div class="stat-number" data-target="12" data-prefix="+">0</div>
+          <div class="stat-label">Docentes especializados</div>
+        </div>
+        <div class="stat-item reveal reveal-delay-3">
+          <div class="stat-number" data-target="15" data-prefix="+" data-suffix="K">0</div>
+          <div class="stat-label">Seguidores en Instagram</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GALERÍA
+  ============================================================ -->
+  <section id="galeria">
+    <div class="container">
+      <div class="galeria-header">
+        <span class="section-label reveal">Nuestro mundo</span>
+        <h2 class="section-title reveal reveal-delay-1">GALERÍA</h2>
+        <div class="gold-line reveal reveal-delay-2" style="margin:1.2rem auto;"></div>
+      </div>
+    </div>
+
+    <!--
+      GALERÍA: reemplazá cada .gal-placeholder por una etiqueta <img src="..." alt="..." />
+      dentro del mismo .gal-item. Podés mezclar fotos de clases, shows y backstage.
+    -->
+    <div class="galeria-grid">
+      <div class="gal-item reveal">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=900&q=80" alt="Performance en La Academia" loading="lazy" />
+        <div class="gal-overlay"><i class="fa-solid fa-expand"></i></div>
+      </div>
+      <div class="gal-item reveal reveal-delay-1">
+        <img src="https://images.pexels.com/photos/1701194/pexels-photo-1701194.jpeg?auto=compress&cs=tinysrgb&w=700&q=80" alt="Danza en La Academia" loading="lazy" />
+        <div class="gal-overlay"><i class="fa-solid fa-expand"></i></div>
+      </div>
+      <div class="gal-item reveal reveal-delay-2">
+        <img src="https://images.pexels.com/photos/3171203/pexels-photo-3171203.jpeg?auto=compress&cs=tinysrgb&w=500&q=85" alt="Ballet en La Academia" loading="lazy" />
+        <div class="gal-overlay"><i class="fa-solid fa-expand"></i></div>
+      </div>
+      <div class="gal-item reveal reveal-delay-3">
+        <img src="https://images.unsplash.com/photo-1503095396549-807759245b35?auto=format&fit=crop&w=600&q=80" alt="Teatro en La Academia" loading="lazy" />
+        <div class="gal-overlay"><i class="fa-solid fa-expand"></i></div>
+      </div>
+      <div class="gal-item reveal reveal-delay-1">
+        <img src="https://images.pexels.com/photos/1701202/pexels-photo-1701202.jpeg?auto=compress&cs=tinysrgb&w=700&q=85" alt="Danza en La Academia" loading="lazy" />
+        <div class="gal-overlay"><i class="fa-solid fa-expand"></i></div>
+      </div>
+      <div class="gal-item reveal reveal-delay-2">
+        <img src="https://images.pexels.com/photos/1701205/pexels-photo-1701205.jpeg?auto=compress&cs=tinysrgb&w=600&q=85" alt="Clases en La Academia" loading="lazy" />
+        <div class="gal-overlay"><i class="fa-solid fa-expand"></i></div>
+      </div>
+      <div class="gal-item reveal reveal-delay-3">
+        <img src="https://images.pexels.com/photos/1701196/pexels-photo-1701196.jpeg?auto=compress&cs=tinysrgb&w=900&q=85" alt="Escenario La Academia" loading="lazy" />
+        <div class="gal-overlay"><i class="fa-solid fa-expand"></i></div>
+      </div>
+      <div class="gal-item reveal reveal-delay-4">
+        <img src="https://images.pexels.com/photos/1701193/pexels-photo-1701193.jpeg?auto=compress&cs=tinysrgb&w=900&q=85" alt="Performance La Academia" loading="lazy" />
+        <div class="gal-overlay"><i class="fa-solid fa-expand"></i></div>
+      </div>
+    </div>
+
+    <div class="galeria-cta" style="margin-top:2.5rem;">
+      <a href="https://instagram.com/laacademiauy" target="_blank" rel="noopener" class="btn btn-outline">
+        <i class="fa-brands fa-instagram"></i> Ver más en Instagram
+      </a>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TESTIMONIOS
+  ============================================================ -->
+  <section id="testimonios">
+    <div class="container">
+      <div class="testimonios-header">
+        <span class="section-label reveal">Comunidad</span>
+        <h2 class="section-title reveal reveal-delay-1">LO QUE DICE<br>NUESTRA GENTE</h2>
+        <div class="gold-line reveal reveal-delay-2" style="margin:1.2rem auto;"></div>
+      </div>
+
+      <div class="slider-wrap reveal reveal-delay-3">
+        <div class="slider-track" id="sliderTrack">
+
+          <!-- TESTIMONIOS: reemplazá con los reales. Formato: nombre + texto + rol/disciplina -->
+
+          <div class="testimonial-card">
+            <div class="stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p class="testimonial-text">
+              "La Academia cambió mi vida. Llegué sin saber bailar y a los dos años estaba en el elenco del show anual. El nivel de los docentes es increíble y el ambiente te impulsa a superarte cada día."
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar">A</div>
+              <div>
+                <div class="author-name">Agustina Pereyra</div>
+                <div class="author-meta">Alumna · Ballet Clásico</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p class="testimonial-text">
+              "Hace tres años que soy parte de esta comunidad y puedo decir que es mucho más que una academia. Es una familia. La exigencia artística está al nivel de lo mejor que encontré en el país."
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar">F</div>
+              <div>
+                <div class="author-name">Felipe Rodríguez</div>
+                <div class="author-meta">Alumno · Danza Contemporánea</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p class="testimonial-text">
+              "Las clases de contemporáneo con Martina son transformadoras. Nunca pensé que iba a poder moverme con la libertad que tengo ahora. El método y la dedicación que tienen acá es de otro nivel."
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar">S</div>
+              <div>
+                <div class="author-name">Sofía Almeida</div>
+                <div class="author-meta">Alumna · Danza Contemporánea</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p class="testimonial-text">
+              "Mandé a mi hija a los 9 años y hoy, con 15, es una bailarina completa. La academia cuida tanto el desarrollo artístico como el personal. Confío plenamente en el equipo docente."
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar">M</div>
+              <div>
+                <div class="author-name">Marcela Iglesias</div>
+                <div class="author-meta">Mamá de alumna · Ballet</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p class="testimonial-text">
+              "Urban dance con Lucas es energía pura. Las coreografías son desafiantes, el grupo es top y cada clase te deja con más ganas de volver. La academia entiende lo que es el movimiento urbano de verdad."
+            </p>
+            <div class="testimonial-author">
+              <div class="author-avatar">T</div>
+              <div>
+                <div class="author-name">Tomás Vidal</div>
+                <div class="author-meta">Alumno · Hip Hop & Urban</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="slider-controls">
+        <button class="slider-btn" id="sliderPrev" aria-label="Anterior">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <div class="slider-dots" id="sliderDots"></div>
+        <button class="slider-btn" id="sliderNext" aria-label="Siguiente">
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACTO & UBICACIÓN
+  ============================================================ -->
+  <section id="contacto">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:4rem;">
+        <span class="section-label reveal">Sumate</span>
+        <h2 class="section-title reveal reveal-delay-1">CONTACTO &<br>UBICACIÓN</h2>
+        <div class="gold-line reveal reveal-delay-2" style="margin:1.2rem auto;"></div>
+        <p class="section-subtitle reveal reveal-delay-3" style="margin:0 auto;text-align:center;">
+          Visitanos o escribinos por nuestras redes. Estamos para guiarte en tu camino en la danza.
+        </p>
+      </div>
+
+      <div class="contacto-grid">
+
+        <!-- Mapa e info -->
+        <div class="reveal">
+          <div class="map-wrap">
+            <!--
+              MAPA: reemplazá el src del iframe con el embed de Google Maps real de la academia.
+              Para obtenerlo: Google Maps → tu dirección → Compartir → Incorporar mapa → copiar iframe.
+            -->
+            <iframe
+              src="https://maps.google.com/maps?q=Libertad+2657%2C+Montevideo%2C+Uruguay&t=&z=17&ie=UTF8&iwloc=&output=embed"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Ubicación La Academia – Libertad 2657, Montevideo"
+            ></iframe>
+          </div>
+
+          <div class="contacto-details">
+            <div class="contacto-detail-item">
+              <i class="fa-solid fa-location-dot"></i>
+              <div>
+                <strong>Libertad 2657</strong><br>
+                Entre Cavia y Trabajo, Montevideo, Uruguay 11300
+              </div>
+            </div>
+            <div class="contacto-detail-item">
+              <i class="fa-solid fa-clock"></i>
+              <div>Lunes a Viernes: 10:00 – 22:00<br>Sábados: 9:00 – 17:00</div>
+            </div>
+            <div class="contacto-detail-item">
+              <i class="fa-brands fa-instagram"></i>
+              <div>
+                <a href="https://instagram.com/laacademiauy" target="_blank" rel="noopener" style="color:var(--gold);">@laacademiauy</a>
+                <span style="color:var(--gray);font-size:0.8rem;"> · 15.6K seguidores</span>
+              </div>
+            </div>
+            <div class="contacto-detail-item">
+              <img src="vsco1.png" alt="VSCO" style="width:24px;height:24px;object-fit:contain;opacity:0.7;flex-shrink:0;" />
+              <a href="https://vsco.co/laacademiauy-/gallery" target="_blank" rel="noopener" style="color:var(--gold);">vsco.co/laacademiauy-</a>
+            </div>
+          </div>
+
+          <div class="social-row" style="margin-top:1.5rem;">
+            <a href="https://instagram.com/laacademiauy" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://vsco.co/laacademiauy-/gallery" target="_blank" rel="noopener" class="social-link" aria-label="VSCO">
+              <img src="vsco1.png" alt="VSCO" style="width:24px;height:24px;object-fit:contain;filter:brightness(0) invert(1);opacity:0.75;" />
+            </a>
+            <a href="https://www.facebook.com/laacademiauy" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Contacto social -->
+        <div class="reveal reveal-delay-2" style="display:flex;flex-direction:column;justify-content:center;">
+          <div style="background:var(--black-3);border:1px solid var(--black-4);border-radius:8px;padding:2.5rem;">
+            <p class="section-label" style="margin-bottom:0.5rem;">Escribinos</p>
+            <h3 style="font-family:var(--font-title);font-size:2rem;letter-spacing:0.04em;margin-bottom:0.8rem;">CONTACTATE<br>CON NOSOTROS</h3>
+            <p style="color:var(--white-dim);font-size:0.95rem;line-height:1.7;margin-bottom:2rem;">
+              ¿Querés sumarte, tenés una consulta sobre horarios o disciplinas? Escribinos directo por nuestras redes y te respondemos a la brevedad.
+            </p>
+
+            <a href="https://instagram.com/laacademiauy" target="_blank" rel="noopener"
+               style="display:flex;align-items:center;gap:1rem;background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);color:#fff;font-family:var(--font-body);font-weight:700;font-size:0.9rem;letter-spacing:0.08em;text-transform:uppercase;padding:1rem 1.5rem;border-radius:6px;margin-bottom:1rem;transition:opacity 0.25s;">
+              <i class="fa-brands fa-instagram" style="font-size:1.4rem;"></i>
+              @laacademiauy
+            </a>
+
+            <a href="https://www.facebook.com/laacademiauy" target="_blank" rel="noopener"
+               style="display:flex;align-items:center;gap:1rem;background:#1877f2;color:#fff;font-family:var(--font-body);font-weight:700;font-size:0.9rem;letter-spacing:0.08em;text-transform:uppercase;padding:1rem 1.5rem;border-radius:6px;margin-bottom:2rem;transition:opacity 0.25s;">
+              <i class="fa-brands fa-facebook-f" style="font-size:1.4rem;"></i>
+              La Academia Uruguay
+            </a>
+
+            <p style="font-size:0.78rem;color:var(--gray);border-top:1px solid var(--black-4);padding-top:1.2rem;">
+              <i class="fa-solid fa-circle-info" style="color:var(--gold);margin-right:0.4rem;"></i>
+              Mail y WhatsApp próximamente disponibles.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-grid">
+
+        <div class="footer-brand">
+          <img src="logo3.png" alt="La Academia Logo" style="height:48px;width:auto;object-fit:contain;margin-bottom:1rem;" />
+          <p>
+            Academia de danza en Montevideo. Ballet Clásico, Contemporánea, Hip Hop & Urban, Jazz Dance. Uruguay.
+          </p>
+          <div class="social-row" style="margin-top:1.5rem;">
+            <a href="https://instagram.com/laacademiauy" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://vsco.co/laacademiauy-/gallery" target="_blank" rel="noopener" class="social-link" aria-label="VSCO">
+              <img src="vsco1.png" alt="VSCO" style="width:24px;height:24px;object-fit:contain;filter:brightness(0) invert(1);opacity:0.75;" />
+            </a>
+            <a href="https://www.facebook.com/laacademiauy" target="_blank" rel="noopener" class="social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Disciplinas</h5>
+          <ul>
+            <li><a href="#disciplinas">Ballet Clásico</a></li>
+            <li><a href="#disciplinas">Danza Contemporánea</a></li>
+            <li><a href="#disciplinas">Hip Hop & Urban</a></li>
+            <li><a href="#disciplinas">Jazz Dance</a></li>
+            <li><a href="#disciplinas">Latin Dance</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>La Academia</h5>
+          <ul>
+            <li><a href="#sobre">Nuestra historia</a></li>
+            <li><a href="#profesores">El equipo</a></li>
+            <li><a href="#horarios">Horarios</a></li>
+            <li><a href="#galeria">Galería</a></li>
+            <li><a href="#testimonios">Testimonios</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Contacto</h5>
+          <ul>
+            <li><a href="#contacto">Escribinos</a></li>
+            <li><a href="https://instagram.com/laacademiauy" target="_blank" rel="noopener">@laacademiauy</a></li>
+            <li><a href="#contacto">Libertad 2657, Mvd</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>© La Academia – Dancing Zone <span id="footerYear"></span>. Todos los derechos reservados.</p>
+        <p style="margin-top:0.4rem;font-size:0.7rem;color:var(--gray);">Diseñado por <strong style="color:var(--gray-light);">JENG Web Development</strong> · <a href="mailto:jengsoftware@gmail.com" style="color:var(--gray);text-decoration:underline;">jengsoftware@gmail.com</a></p>
+        <div class="footer-social">
+          <a href="https://instagram.com/laacademiauy" target="_blank" rel="noopener" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://vsco.co/laacademiauy-/gallery" target="_blank" rel="noopener" aria-label="VSCO">
+            <img src="vsco1.png" alt="VSCO" style="width:18px;height:18px;object-fit:contain;filter:brightness(0) invert(0.6);" />
+          </a>
+          <a href="https://www.facebook.com/laacademiauy" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="" />
+  </div>
+
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    /* ---------- AÑO AUTOMÁTICO ---------- */
+    document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+    /* ---------- NAVBAR scroll ---------- */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    /* ---------- HAMBURGER / MOBILE NAV ---------- */
+    const hamburger  = document.getElementById('hamburger');
+    const mobileNav  = document.getElementById('mobileNav');
+
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.classList.toggle('open');
+      mobileNav.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+
+    function closeMobileNav() {
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    /* ---------- SCROLL REVEAL (IntersectionObserver) ---------- */
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => revealObs.observe(el));
+
+    /* ---------- HORARIOS TABS ---------- */
+    function setTab(btn, day) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      ['lunes','martes','miercoles','jueves','viernes'].forEach(d => {
+        const el = document.getElementById('tab-' + d);
+        if (el) el.style.display = d === day ? 'block' : 'none';
+      });
+    }
+
+    /* ---------- TESTIMONIOS SLIDER ---------- */
+    (function() {
+      const track  = document.getElementById('sliderTrack');
+      const dotsEl = document.getElementById('sliderDots');
+      const cards  = track ? track.querySelectorAll('.testimonial-card') : [];
+      if (!cards.length) return;
+
+      let current  = 0;
+      let perSlide = 3;
+
+      function getPerSlide() {
+        if (window.innerWidth <= 768) return 1;
+        if (window.innerWidth <= 1024) return 2;
+        return 3;
+      }
+
+      function totalSlides() {
+        return Math.ceil(cards.length / perSlide);
+      }
+
+      function buildDots() {
+        dotsEl.innerHTML = '';
+        for (let i = 0; i < totalSlides(); i++) {
+          const d = document.createElement('button');
+          d.className = 'dot' + (i === current ? ' active' : '');
+          d.setAttribute('aria-label', 'Diapositiva ' + (i + 1));
+          d.addEventListener('click', () => goTo(i));
+          dotsEl.appendChild(d);
+        }
+      }
+
+      function goTo(idx) {
+        perSlide = getPerSlide();
+        const max = totalSlides() - 1;
+        current = Math.max(0, Math.min(idx, max));
+        const cardWidth = cards[0].offsetWidth;
+        const gap = 24;
+        track.style.transform = `translateX(-${current * perSlide * (cardWidth + gap)}px)`;
+        dotsEl.querySelectorAll('.dot').forEach((d, i) => {
+          d.classList.toggle('active', i === current);
+        });
+      }
+
+      document.getElementById('sliderPrev').addEventListener('click', () => goTo(current - 1));
+      document.getElementById('sliderNext').addEventListener('click', () => goTo(current + 1));
+
+      function init() {
+        perSlide = getPerSlide();
+        buildDots();
+        goTo(0);
+      }
+      init();
+
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(init, 200);
+      });
+
+      /* Auto-play */
+      setInterval(() => {
+        perSlide = getPerSlide();
+        const next = current + 1 >= totalSlides() ? 0 : current + 1;
+        goTo(next);
+      }, 5000);
+    })();
+
+    /* ---------- COUNTER / STATS ---------- */
+    const statNums = document.querySelectorAll('.stat-number[data-target]');
+    const statsObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const target = parseInt(el.dataset.target, 10);
+        const prefix = el.dataset.prefix || '';
+        const suffix = el.dataset.suffix || '';
+        let start = 0;
+        const step = Math.ceil(target / 60);
+        const timer = setInterval(() => {
+          start = Math.min(start + step, target);
+          el.textContent = prefix + start.toLocaleString('es-UY') + suffix;
+          if (start >= target) clearInterval(timer);
+        }, 25);
+        statsObs.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+    statNums.forEach(n => statsObs.observe(n));
+
+    /* ---------- GALERÍA LIGHTBOX ---------- */
+    const lightbox     = document.getElementById('lightbox');
+    const lightboxImg  = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    document.querySelectorAll('.gal-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        if (img) {
+          lightboxImg.src = img.src;
+          lightboxImg.alt = img.alt;
+          lightbox.classList.add('open');
+          document.body.style.overflow = 'hidden';
+        }
+      });
+    });
+
+    lightboxClose.addEventListener('click', () => {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+    lightbox.addEventListener('click', e => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        lightbox.classList.remove('open');
+        mobileNav.classList.remove('open');
+        hamburger.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+
+    /* ---------- SMOOTH SCROLL — todos los links internos ---------- */
+    function easeInOutCubic(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function smoothScrollTo(targetEl, duration) {
+      const navH = 80;
+      const startY = window.scrollY;
+      const targetY = targetEl.getBoundingClientRect().top + window.scrollY - navH;
+      const dist = targetY - startY;
+      let startTime = null;
+
+      function step(ts) {
+        if (!startTime) startTime = ts;
+        const elapsed = ts - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        window.scrollTo(0, startY + dist * easeInOutCubic(progress));
+        if (elapsed < duration) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const hash = this.getAttribute('href');
+        if (!hash || hash === '#') return;
+        const target = document.querySelector(hash);
+        if (!target) return;
+        e.preventDefault();
+        const dist = Math.abs(target.getBoundingClientRect().top);
+        const duration = Math.min(Math.max(dist * 0.6, 600), 1200);
+        smoothScrollTo(target, duration);
+        if (mobileNav.classList.contains('open')) closeMobileNav();
+      });
+    });
+
+
+  </script>
+
+</body>
+</html>
