@@ -2552,7 +2552,7 @@
                 window._heroShown = true;
                 setTimeout(function() {
                   document.getElementById('hero-video').classList.add('ready');
-                }, 3000);
+                }, 1000);
               }
               /* loop preciso: cada 500ms chequea si hay que volver al inicio */
               if (!window._heroLoopInterval) {
@@ -2562,13 +2562,13 @@
                       heroPlayer.getPlayerState() === YT.PlayerState.PLAYING) {
                     if (heroPlayer.getCurrentTime() >= HERO_END) {
                       /* micro-fade para ocultar el ícono de pausa de YouTube */
-                      heroEl.style.transition = 'opacity 0.15s ease';
+                      heroEl.style.transition = 'opacity 0.3s ease';
                       heroEl.style.opacity = '0';
                       heroPlayer.seekTo(HERO_START, true);
                       setTimeout(function() {
-                        heroEl.style.transition = 'opacity 0.9s ease';
+                        heroEl.style.transition = 'opacity 1.2s ease';
                         heroEl.style.opacity = '0.6';
-                      }, 250);
+                      }, 5000);
                     }
                   }
                 }, 500);
