@@ -2547,12 +2547,12 @@
           },
           onStateChange: function(e) {
             if (e.data === YT.PlayerState.PLAYING) {
-              /* esperar 3s antes de mostrar — oculta el ícono de pausa inicial */
+              /* esperar 5s antes de mostrar — oculta el ícono de pausa inicial */
               if (!window._heroShown) {
                 window._heroShown = true;
                 setTimeout(function() {
                   document.getElementById('hero-video').classList.add('ready');
-                }, 3200);
+                }, 5000);
               }
               /* loop preciso: cada 500ms chequea si hay que volver al inicio */
               if (!window._heroLoopInterval) {
