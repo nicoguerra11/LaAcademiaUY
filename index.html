@@ -44,7 +44,7 @@
       --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    html { scroll-behavior: smooth; font-size: 16px; scroll-padding-top: 80px; overflow-x: hidden; max-width: 100%; }
+    html { scroll-behavior: smooth; font-size: 16px; scroll-padding-top: 80px; background: var(--black); }
 
     /* Scrollbar delgado y oscuro */
     ::-webkit-scrollbar { width: 4px; }
@@ -59,7 +59,6 @@
       font-weight: 400;
       line-height: 1.6;
       overflow-x: hidden;
-      max-width: 100%;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -1434,6 +1433,8 @@
 
       .disc-card-desc { max-height: 100px !important; opacity: 1 !important; }
       .disc-card-link { opacity: 1 !important; transform: translateX(0) !important; }
+
+      .schedule-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
     }
 
     @media (max-width: 480px) {
