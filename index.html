@@ -2518,23 +2518,32 @@
     })();
 
     var heroPlayer;
+    var HERO_START = 90;  /* 1:30 */
+    var HERO_END   = 120; /* 2:00 — loop de 30 seg */
+
     function onYouTubeIframeAPIReady() {
       heroPlayer = new YT.Player('ytplayer', {
-        videoId: 'GQ50yv9FpGA',
+        videoId: 'FEDHp1qeL9g',
         playerVars: {
-          autoplay: 1, mute: 1, loop: 1,
-          playlist: 'GQ50yv9FpGA',
+          autoplay: 1, mute: 1,
           controls: 0, showinfo: 0, rel: 0,
           modestbranding: 1, playsinline: 1,
-          start: 110, disablekb: 1, fs: 0,
+          start: HERO_START, disablekb: 1, fs: 0,
           iv_load_policy: 3
         },
         events: {
-          onReady: function(e) { e.target.mute(); e.target.playVideo(); },
-          onStateChange: function(e) {
-            if (e.data === YT.PlayerState.ENDED) {
-              e.target.seekTo(110); e.target.playVideo();
-            }
+          onReady: function(e) {
+            e.target.mute();
+            e.target.playVideo();
+            /* loop preciso: cada 500ms chequea si hay que volver al inicio */
+            setInterval(function() {
+              if (heroPlayer && heroPlayer.getCurrentTime &&
+                  heroPlayer.getPlayerState() === YT.PlayerState.PLAYING) {
+                if (heroPlayer.getCurrentTime() >= HERO_END) {
+                  heroPlayer.seekTo(HERO_START, true);
+                }
+              }
+            }, 500);
           }
         }
       });
