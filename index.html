@@ -547,18 +547,24 @@
     .sobre-chips {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
+      gap: 0.5rem 1.6rem;
       margin-top: 2rem;
     }
     .chip {
-      font-size: 0.67rem;
+      font-size: 0.68rem;
       font-weight: 700;
       letter-spacing: 0.13em;
       text-transform: uppercase;
+      color: var(--gray-light);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .chip::before {
+      content: '•';
       color: var(--gold);
-      background: rgba(201,168,76,0.08);
-      padding: 0.45em 1em;
-      border-radius: 3px;
+      font-size: 0.9rem;
+      line-height: 1;
     }
 
     /* ====================================================
