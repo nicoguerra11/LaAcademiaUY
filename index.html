@@ -2552,11 +2552,19 @@
               document.getElementById('hero-video').classList.add('ready');
               /* loop preciso: cada 500ms chequea si hay que volver al inicio */
               if (!window._heroLoopInterval) {
+                var heroEl = document.getElementById('hero-video');
                 window._heroLoopInterval = setInterval(function() {
                   if (heroPlayer && heroPlayer.getCurrentTime &&
                       heroPlayer.getPlayerState() === YT.PlayerState.PLAYING) {
                     if (heroPlayer.getCurrentTime() >= HERO_END) {
+                      /* micro-fade para ocultar el ícono de pausa de YouTube */
+                      heroEl.style.transition = 'opacity 0.15s ease';
+                      heroEl.style.opacity = '0';
                       heroPlayer.seekTo(HERO_START, true);
+                      setTimeout(function() {
+                        heroEl.style.transition = 'opacity 0.9s ease';
+                        heroEl.style.opacity = '0.6';
+                      }, 250);
                     }
                   }
                 }, 500);
