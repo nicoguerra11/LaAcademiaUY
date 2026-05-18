@@ -302,9 +302,9 @@
     #hero-video {
       position: absolute;
       inset: 0;
-      z-index: 0;
+      z-index: 1;
       overflow: hidden;
-      opacity: 0.55;
+      opacity: 0.6;
     }
     #hero-video iframe {
       position: absolute;
@@ -340,7 +340,7 @@
     .hero-overlay {
       position: absolute;
       inset: 0;
-      z-index: 1;
+      z-index: 2;
       background: linear-gradient(
         to bottom,
         rgba(8,8,8,0.3) 0%,
@@ -352,7 +352,7 @@
 
     .hero-content {
       position: relative;
-      z-index: 2;
+      z-index: 3;
       text-align: center;
       padding: 0 1.5rem;
       max-width: 900px;
@@ -1607,12 +1607,7 @@
   ============================================================ -->
   <section id="hero">
     <div id="hero-video">
-      <iframe
-        src="https://www.youtube.com/embed/GQ50yv9FpGA?autoplay=1&mute=1&loop=1&playlist=GQ50yv9FpGA&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&start=110&disablekb=1&fs=0"
-        frameborder="0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
-      </iframe>
+      <div id="ytplayer"></div>
     </div>
 
     <!-- Placeholder visual mientras no haya video -->
@@ -2514,6 +2509,36 @@
   <script>
     /* ---------- AÑO AUTOMÁTICO ---------- */
     document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+    /* ---------- YOUTUBE HERO VIDEO ---------- */
+    (function() {
+      var tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      document.head.appendChild(tag);
+    })();
+
+    var heroPlayer;
+    function onYouTubeIframeAPIReady() {
+      heroPlayer = new YT.Player('ytplayer', {
+        videoId: 'GQ50yv9FpGA',
+        playerVars: {
+          autoplay: 1, mute: 1, loop: 1,
+          playlist: 'GQ50yv9FpGA',
+          controls: 0, showinfo: 0, rel: 0,
+          modestbranding: 1, playsinline: 1,
+          start: 110, disablekb: 1, fs: 0,
+          iv_load_policy: 3
+        },
+        events: {
+          onReady: function(e) { e.target.mute(); e.target.playVideo(); },
+          onStateChange: function(e) {
+            if (e.data === YT.PlayerState.ENDED) {
+              e.target.seekTo(110); e.target.playVideo();
+            }
+          }
+        }
+      });
+    }
 
     /* ---------- NAVBAR scroll ---------- */
     const navbar = document.getElementById('navbar');
