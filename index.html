@@ -44,7 +44,7 @@
       --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    html { scroll-behavior: smooth; font-size: 16px; scroll-padding-top: 80px; }
+    html { scroll-behavior: smooth; font-size: 16px; scroll-padding-top: 80px; overflow-x: hidden; max-width: 100%; }
 
     /* Scrollbar delgado y oscuro */
     ::-webkit-scrollbar { width: 4px; }
@@ -59,6 +59,7 @@
       font-weight: 400;
       line-height: 1.6;
       overflow-x: hidden;
+      max-width: 100%;
       -webkit-font-smoothing: antialiased;
     }
 
