@@ -2527,8 +2527,10 @@
     })();
 
     var heroPlayer;
-    var HERO_START = 90;  /* 1:30 */
-    var HERO_END   = 120; /* 2:00 — loop de 30 seg */
+    var HERO_START        = 90;  /* seek a 1:30 — el ícono de pausa aparece acá */
+    var HERO_DISPLAY_START = 94; /* mostrar recién en 1:34 — ícono ya desapareció */
+    var HERO_END          = 120; /* 2:00 — loop de ~26 seg visibles */
+    var heroVisible       = false;
 
     function onYouTubeIframeAPIReady() {
       heroPlayer = new YT.Player('ytplayer', {
@@ -2547,28 +2549,23 @@
           },
           onStateChange: function(e) {
             if (e.data === YT.PlayerState.PLAYING) {
-              /* esperar 5s antes de mostrar — oculta el ícono de pausa inicial */
-              if (!window._heroShown) {
-                window._heroShown = true;
-                setTimeout(function() {
-                  document.getElementById('hero-video').classList.add('ready');
-                }, 5000);
-              }
-              /* loop preciso: cada 500ms chequea si hay que volver al inicio */
               if (!window._heroLoopInterval) {
                 var heroEl = document.getElementById('hero-video');
                 window._heroLoopInterval = setInterval(function() {
                   if (heroPlayer && heroPlayer.getCurrentTime &&
                       heroPlayer.getPlayerState() === YT.PlayerState.PLAYING) {
-                    if (heroPlayer.getCurrentTime() >= HERO_END) {
-                      /* micro-fade para ocultar el ícono de pausa de YouTube */
+                    var t = heroPlayer.getCurrentTime();
+                    if (t >= HERO_END) {
+                      /* loop: ocultar, volver al inicio */
                       heroEl.style.transition = 'opacity 0.3s ease';
                       heroEl.style.opacity = '0';
+                      heroVisible = false;
                       heroPlayer.seekTo(HERO_START, true);
-                      setTimeout(function() {
-                        heroEl.style.transition = 'opacity 1.2s ease';
-                        heroEl.style.opacity = '0.6';
-                      }, 5000);
+                    } else if (!heroVisible && t >= HERO_DISPLAY_START) {
+                      /* mostrar solo cuando el video ya lleva 4s reproduciéndose */
+                      heroEl.style.transition = 'opacity 1.2s ease';
+                      heroEl.style.opacity = '0.6';
+                      heroVisible = true;
                     }
                   }
                 }, 500);
